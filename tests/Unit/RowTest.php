@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpTui\Cassowary\Tests;
+namespace PhpTui\Cassowary\Tests\Unit;
 
 use PhpTui\Cassowary\Row;
 use PhpTui\Cassowary\Symbol;

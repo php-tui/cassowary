@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpTui\Cassowary\Tests;
+namespace PhpTui\Cassowary\Tests\Unit;
 
 use PhpTui\Cassowary\Expression;
 use PhpTui\Cassowary\Term;
