@@ -10,7 +10,7 @@ use PhpTui\Cassowary\Solver;
 use PhpTui\Cassowary\Variable;
 use RuntimeException;
 
-final class CassowaryBench
+final class SolverBench
 {
     #[Attributes\Iterations(10)]
     public function benchSimpleTuiExample(): void

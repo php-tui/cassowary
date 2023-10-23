@@ -3,12 +3,10 @@
 namespace PhpTui\Cassowary\Tests\Unit;
 
 use PhpTui\Cassowary\Constraint;
-use PhpTui\Cassowary\RelationalOperator;
 use PhpTui\Cassowary\Solver;
 use PhpTui\Cassowary\Strength;
 use PhpTui\Cassowary\Variable;
 use PHPUnit\Framework\TestCase;
-use SplObjectStorage;
 
 class QuadrilateralTest extends TestCase
 {
@@ -94,7 +92,8 @@ class QuadrilateralTest extends TestCase
     }
 }
 
-class Point {
+class Point
+{
     public function __construct(public Variable $x, public Variable $y)
     {
     }
