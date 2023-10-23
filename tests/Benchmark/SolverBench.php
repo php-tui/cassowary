@@ -2,7 +2,6 @@
 
 namespace PhpTui\Cassowary\Tests\Benchmark;
 
-use PHPUnit\Framework\Assert;
 use PhpBench\Attributes;
 use PhpTui\Cassowary\Constraint;
 use PhpTui\Cassowary\Strength;
