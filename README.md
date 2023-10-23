@@ -14,6 +14,13 @@ Status
 I've ported just enough of the code to support solving constraints. I _have
 not_ ported support for edit variables or changing constraints. PRs welcome.
 
+Installation
+------------
+
+```
+$ composer require php-tui/cassowary
+```
+
 What does it do?
 ----------------
 
