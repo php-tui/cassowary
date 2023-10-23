@@ -97,6 +97,8 @@ var_dump($changes->getValue($bx2)); // 30
 var_dump($changes->getValue($y2));  // 3
 ```
 
+Note that `$changes` only contains values that have changed.
+
 How does it work?
 -----------------
 
