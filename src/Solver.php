@@ -12,8 +12,9 @@ class Solver
      * @param SplObjectStorage<Symbol,Variable> $varForSymbol
      * @param SplObjectStorage<Variable,array{float, Symbol, int}> $varData
      * @param SplObjectStorage<Symbol,Row> $rows
-     * @param SplObjectStorage<Variable> $changed
+     * @param SplObjectStorage<Variable,null> $changed
      * @param list<Symbol> $infeasibleRows
+     * @param list<array{Variable,float}> $publicChanges
      */
     final private function __construct(
         public readonly SplObjectStorage $constraints,
@@ -25,6 +26,7 @@ class Solver
         private ?Row $artificial,
         private int $idTick,
         private bool $shouldClearChanges = false,
+        /** @phpstan-ignore-next-line Never read only written -- but maybe it would be if this port was finished */
         private array $infeasibleRows = [],
         private array $publicChanges = []
     ) {

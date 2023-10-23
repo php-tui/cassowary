@@ -7,7 +7,7 @@ use Stringable;
 
 class Variable implements Stringable
 {
-    private static $idIndex = 0;
+    private static int $idIndex = 0;
 
     private function __construct(public int $id, public ?string $label = null)
     {

@@ -14,7 +14,7 @@ class ConstraintTest extends TestCase
 {
     public function testGreaterThan(): void
     {
-        $var1 = Variable::new(10.0);
+        $var1 = Variable::new();
         $c = Constraint::greaterThanOrEqualTo($var1, 10.0, Strength::WEAK);
 
         self::assertEquals(Strength::WEAK, $c->strength);
@@ -29,7 +29,7 @@ class ConstraintTest extends TestCase
 
     public function testLessThan(): void
     {
-        $var1 = Variable::new(10.0);
+        $var1 = Variable::new();
         $c = Constraint::lessThanOrEqualTo($var1, 10.0, Strength::WEAK);
 
         self::assertEquals(Strength::WEAK, $c->strength);
@@ -44,7 +44,7 @@ class ConstraintTest extends TestCase
 
     public function testEqualTo(): void
     {
-        $var1 = Variable::new(10.0);
+        $var1 = Variable::new();
         $c = Constraint::equalTo($var1, 10.0, Strength::WEAK);
 
         self::assertEquals(Strength::WEAK, $c->strength);
