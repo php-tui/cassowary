@@ -97,7 +97,7 @@ var_dump($changes->getValue($bx2)); // 30
 var_dump($changes->getValue($y2));  // 3
 ```
 
-Note that `$changes` only contains values that have changed.
+> Note that `$changes` only contains values that have changed and by default variables start at 0.0. This API is more relevant for when variables can be updated.
 
 How does it work?
 -----------------
