@@ -18,7 +18,7 @@ Installation
 ------------
 
 ```
-$ composer require php-tui/cassowary
+$ composer require phptui/cassowary
 ```
 
 What does it do?
