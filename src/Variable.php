@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\Cassowary;
+namespace PhpTui\Cassowary;
 
 use RuntimeException;
 use Stringable;
@@ -11,6 +11,11 @@ class Variable implements Stringable
 
     private function __construct(public int $id, public ?string $label = null)
     {
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('Variable(%d)', $this->id);
     }
 
     public function add(mixed $value): Expression
@@ -37,11 +42,6 @@ class Variable implements Stringable
     public function toExpression(): Expression
     {
         return new Expression([new Term($this, 1.0)], 0.0);
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('Variable(%d)', $this->id);
     }
 
     public static function new(): self

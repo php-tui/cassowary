@@ -1,13 +1,13 @@
 <?php
 
-namespace DTL\Cassowary\Tests;
+namespace PhpTui\Cassowary\Tests;
 
-use DTL\Cassowary\Constraint;
-use DTL\Cassowary\Expression;
-use DTL\Cassowary\RelationalOperator;
-use DTL\Cassowary\Strength;
-use DTL\Cassowary\Term;
-use DTL\Cassowary\Variable;
+use PhpTui\Cassowary\Constraint;
+use PhpTui\Cassowary\Expression;
+use PhpTui\Cassowary\RelationalOperator;
+use PhpTui\Cassowary\Strength;
+use PhpTui\Cassowary\Term;
+use PhpTui\Cassowary\Variable;
 use PHPUnit\Framework\TestCase;
 
 class ConstraintTest extends TestCase
@@ -92,16 +92,16 @@ class ConstraintTest extends TestCase
 
         $c = Constraint::equalTo($x->add(2.0), $y->add(10.0), Strength::REQUIRED);
 
-         self::assertEquals(
-             new Expression(
-                 terms: [
-                     new Term($x, 1.0),
-                     new Term($y, -1.0),
-                 ],
-                 constant: -8.0,
-             ),
-             $c->expression
-         );
+        self::assertEquals(
+            new Expression(
+                terms: [
+                    new Term($x, 1.0),
+                    new Term($y, -1.0),
+                ],
+                constant: -8.0,
+            ),
+            $c->expression
+        );
     }
 
     public function testDiv(): void
@@ -111,16 +111,16 @@ class ConstraintTest extends TestCase
 
         $c = Constraint::equalTo($x, $y->add($x)->div(2), Strength::REQUIRED);
 
-         self::assertEquals(
-             new Expression(
-                 terms: [
-                     new Term($x, 1.0),
-                     new Term($y, -0.5),
-                     new Term($x, -0.5),
-                 ],
-                 constant: 0.0,
-             ),
-             $c->expression
-         );
+        self::assertEquals(
+            new Expression(
+                terms: [
+                    new Term($x, 1.0),
+                    new Term($y, -0.5),
+                    new Term($x, -0.5),
+                ],
+                constant: 0.0,
+            ),
+            $c->expression
+        );
     }
 }

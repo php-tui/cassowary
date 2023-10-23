@@ -1,17 +1,26 @@
 <?php
 
-namespace DTL\Cassowary;
+namespace PhpTui\Cassowary;
 
 use Countable;
-use DTL\PhpTui\Widget\Table\TableCell;
 use RuntimeException;
-use SplObjectStorage;
 use Stringable;
 
 class Row implements Countable, Stringable
 {
     public function __construct(public float $constant, public CellMap $cells)
     {
+    }
+
+    public function __toString(): string
+    {
+        $string = [];
+
+        foreach ($this->cells as $cell) {
+            $string[] = sprintf('%s: %s', $cell->__toString(), $this->cells->offsetGet($cell));
+        }
+
+        return sprintf('Row#%d { cells: {%s}, constant: %s', spl_object_id($this), implode(', ', $string), $this->constant);
     }
 
     public static function new(float $constant): self
@@ -126,17 +135,6 @@ class Row implements Countable, Stringable
     public function count(): int
     {
         return $this->cells->count();
-    }
-
-    public function __toString(): string
-    {
-        $string = [];
-
-        foreach ($this->cells as $cell) {
-            $string[] = sprintf('%s: %s', $cell->__toString(), $this->cells->offsetGet($cell));
-        }
-
-        return sprintf('Row#%d { cells: {%s}, constant: %s', spl_object_id($this), implode(", ", $string), $this->constant);
     }
 
     public function clone(): self

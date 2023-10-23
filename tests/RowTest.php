@@ -1,9 +1,9 @@
 <?php
 
-namespace DTL\Cassowary\Tests;
+namespace PhpTui\Cassowary\Tests;
 
-use DTL\Cassowary\Row;
-use DTL\Cassowary\Symbol;
+use PhpTui\Cassowary\Row;
+use PhpTui\Cassowary\Symbol;
 use PHPUnit\Framework\TestCase;
 
 class RowTest extends TestCase

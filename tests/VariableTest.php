@@ -1,10 +1,10 @@
 <?php
 
-namespace DTL\Cassowary\Tests;
+namespace PhpTui\Cassowary\Tests;
 
-use DTL\Cassowary\Expression;
-use DTL\Cassowary\Term;
-use DTL\Cassowary\Variable;
+use PhpTui\Cassowary\Expression;
+use PhpTui\Cassowary\Term;
+use PhpTui\Cassowary\Variable;
 use PHPUnit\Framework\TestCase;
 
 class VariableTest extends TestCase

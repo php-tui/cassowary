@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\Cassowary;
+namespace PhpTui\Cassowary;
 
 final class Strength
 {

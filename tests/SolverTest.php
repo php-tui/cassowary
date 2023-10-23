@@ -1,14 +1,13 @@
 <?php
 
-namespace DTL\Cassowary\Tests;
+namespace PhpTui\Cassowary\Tests;
 
-use DTL\Cassowary\AddConstraintaintError;
-use DTL\Cassowary\Constraint;
-use DTL\Cassowary\Expression;
-use DTL\Cassowary\RelationalOperator;
-use DTL\Cassowary\Solver;
-use DTL\Cassowary\Strength;
-use DTL\Cassowary\Variable;
+use PhpTui\Cassowary\AddConstraintaintError;
+use PhpTui\Cassowary\Constraint;
+use PhpTui\Cassowary\RelationalOperator;
+use PhpTui\Cassowary\Solver;
+use PhpTui\Cassowary\Strength;
+use PhpTui\Cassowary\Variable;
 use PHPUnit\Framework\TestCase;
 
 class SolverTest extends TestCase
@@ -19,7 +18,7 @@ class SolverTest extends TestCase
         $constraint = new Constraint(
             relationalOperator: RelationalOperator::Equal,
             expression: (Variable::new())->toExpression(),
-            strength: Strength::REQUIRED 
+            strength: Strength::REQUIRED
         );
         Solver::new()->addConstraints([
             $constraint,

@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\Cassowary;
+namespace PhpTui\Cassowary;
 
 use Stringable;
 
@@ -11,6 +11,15 @@ final class Expression implements Stringable
      */
     public function __construct(public array $terms, public float $constant)
     {
+    }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s constant: %f',
+            implode(', ', array_map(fn (Term $t) => $t->__toString(), $this->terms)),
+            $this->constant
+        );
     }
 
     public static function fromTerm(Term $term): self
@@ -50,15 +59,6 @@ final class Expression implements Stringable
         $this->constant *= - 1;
 
         return $this;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf(
-            '%s constant: %f',
-            implode(', ', array_map(fn (Term $t) => $t->__toString(), $this->terms)),
-            $this->constant
-        );
     }
 
     public function div(float $divisor): self

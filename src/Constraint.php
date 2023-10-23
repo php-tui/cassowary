@@ -1,9 +1,7 @@
 <?php
 
-namespace DTL\Cassowary;
+namespace PhpTui\Cassowary;
 
-use DTL\Cassowary\RelationalOperator;
-use DTL\Cassowary\Strength;
 use Stringable;
 
 final class Constraint implements Stringable
@@ -12,8 +10,7 @@ final class Constraint implements Stringable
         public RelationalOperator $relationalOperator,
         public Expression $expression,
         public float $strength
-    )
-    {
+    ) {
     }
 
     public function __toString(): string
@@ -26,7 +23,8 @@ final class Constraint implements Stringable
         );
     }
 
-    public static function new(RelationalOperator $operator, Variable|Expression $expr, Variable|Expression|float $rhs, float$strength): self {
+    public static function new(RelationalOperator $operator, Variable|Expression $expr, Variable|Expression|float $rhs, float$strength): self
+    {
         if ($expr instanceof Variable) {
             $expr = $expr->toExpression();
         }

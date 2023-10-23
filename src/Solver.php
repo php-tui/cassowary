@@ -1,6 +1,6 @@
 <?php
 
-namespace DTL\Cassowary;
+namespace PhpTui\Cassowary;
 
 use RuntimeException;
 use SplObjectStorage;
@@ -28,6 +28,15 @@ class Solver
         private array $infeasibleRows = [],
         private array $publicChanges = []
     ) {
+    }
+
+    public function __toString(): string
+    {
+        $string = [];
+        foreach ($this->constraints as $constraint) {
+            $string[] = $constraint->__toString();
+        }
+        return implode("\n", $string);
     }
 
     /**
@@ -485,14 +494,5 @@ class Solver
     {
         $this->changed = new SplObjectStorage();
         $this->shouldClearChanges = false;
-    }
-
-    public function __toString(): string
-    {
-        $string = [];
-        foreach ($this->constraints as $constraint) {
-            $string[] = $constraint->__toString();
-        }
-        return implode("\n", $string);
     }
 }
