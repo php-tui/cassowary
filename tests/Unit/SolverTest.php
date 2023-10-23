@@ -127,4 +127,41 @@ class SolverTest extends TestCase
             ],
         );
     }
+
+    public function testReadmeExample(): void
+    {
+        $ax1 = Variable::new();
+        $ax2 = Variable::new();
+        $bx1 = Variable::new();
+        $bx2 = Variable::new();
+        $y1 = Variable::new();
+        $y2 = Variable::new();
+
+        $s = Solver::new();
+        $s->addConstraints([
+            Constraint::equalTo($ax1, 0.0, Strength::REQUIRED),
+            Constraint::greaterThanOrEqualTo($ax2, $ax1, Strength::REQUIRED),
+            Constraint::greaterThanOrEqualTo($ax2, $ax1->add(10.0), Strength::WEAK),
+            Constraint::equalTo($bx1, $ax2, Strength::REQUIRED),
+            Constraint::equalTo($bx2, 30.0, Strength::REQUIRED),
+            Constraint::equalTo($y1, 0.0, Strength::REQUIRED),
+            Constraint::equalTo($y2, 3.0, Strength::REQUIRED),
+        ]);
+        $changes = $s->fetchChanges();
+
+        self::assertEquals(
+            [
+                10.0,
+                10.0,
+                30.0,
+                3.0,
+            ],
+            [
+                $changes->getValue($ax2),
+                $changes->getValue($bx1),
+                $changes->getValue($bx2),
+                $changes->getValue($y2),
+            ],
+        );
+    }
 }
