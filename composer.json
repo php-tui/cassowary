@@ -1,5 +1,5 @@
 {
-    "name": "phptui/cassowary",
+    "name": "php-tui/cassowary",
     "description": "PHP TUI",
     "type": "library",
     "license": "MIT",
