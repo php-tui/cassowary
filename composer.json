@@ -1,6 +1,6 @@
 {
     "name": "php-tui/cassowary",
-    "description": "PHP TUI",
+    "description": "Cassowary constraint solving algorithm implementation",
     "type": "library",
     "license": "MIT",
     "autoload": {
