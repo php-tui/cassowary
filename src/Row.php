@@ -117,8 +117,7 @@ class Row implements Countable, Stringable
             }
 
             throw new RuntimeException(
-                'Coefficient for symbol doesn\'t exist,' .
-                'this probably should not happen'
+                'Coefficient for symbol doesn\'t exist,this probably should not happen'
             );
         })();
         $this->constant *= $coefficient;

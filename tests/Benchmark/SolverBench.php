@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PhpTui\Cassowary\Tests\Benchmark;
 
-use PhpBench\Attributes;
+use PhpBench\Attributes\Iterations;
 use PhpTui\Cassowary\Constraint;
 use PhpTui\Cassowary\Solver;
 use PhpTui\Cassowary\Strength;
@@ -13,7 +13,7 @@ use RuntimeException;
 
 final class SolverBench
 {
-    #[Attributes\Iterations(10)]
+    #[Iterations(10)]
     public function benchSimpleTuiExample(): void
     {
         $s = Solver::new();

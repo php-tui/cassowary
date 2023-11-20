@@ -37,7 +37,7 @@ class Variable implements Stringable
 
         throw new RuntimeException(sprintf(
             'Do not know how to add %s to a Variable',
-            is_object($value) ? $value::class : gettype($value)
+            get_debug_type($value)
         ));
     }
 

@@ -18,7 +18,7 @@ class Changes implements IteratorAggregate
     /**
      * @param list<array{Variable,float}> $changes
      */
-    public function __construct(private array $changes)
+    public function __construct(private readonly array $changes)
     {
     }
 

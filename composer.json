@@ -26,15 +26,18 @@
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.4",
         "symfony/var-dumper": "^6.3",
-        "phpbench/phpbench": "^1.2"
+        "phpbench/phpbench": "^1.2",
+        "rector/rector": "^0.18.10"
     },
     "scripts": {
         "phpstan": "./vendor/bin/phpstan --memory-limit=1G",
         "php-cs-fixer": "./vendor/bin/php-cs-fixer fix",
         "phpunit": "./vendor/bin/phpunit",
         "phpbench": "./vendor/bin/phpbench run",
+        "rector": "./vendor/bin/rector process",
         "integrate": [
             "@php-cs-fixer",
+            "@rector",
             "@phpstan",
             "@phpunit",
             "@phpbench"

@@ -19,7 +19,7 @@ final class Expression implements Stringable
     {
         return sprintf(
             '%s constant: %f',
-            implode(', ', array_map(fn (Term $t) => $t->__toString(), $this->terms)),
+            implode(', ', array_map(static fn (Term $t): string => $t->__toString(), $this->terms)),
             $this->constant
         );
     }
@@ -68,7 +68,7 @@ final class Expression implements Stringable
     public function div(float $divisor): self
     {
         return new self(
-            array_map(fn (Term $term) => $term->div($divisor), $this->terms),
+            array_map(static fn (Term $term): Term => $term->div($divisor), $this->terms),
             $this->constant
         );
     }

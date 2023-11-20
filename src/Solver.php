@@ -6,8 +6,9 @@ namespace PhpTui\Cassowary;
 
 use RuntimeException;
 use SplObjectStorage;
+use Stringable;
 
-class Solver
+class Solver implements Stringable
 {
     /**
      * @param SplObjectStorage<Constraint,Tag> $constraints
@@ -21,10 +22,10 @@ class Solver
     final private function __construct(
         public readonly SplObjectStorage $constraints,
         private SplObjectStorage $varForSymbol,
-        private SplObjectStorage $varData,
-        private SplObjectStorage $rows,
+        private readonly SplObjectStorage $varData,
+        private readonly SplObjectStorage $rows,
         private SplObjectStorage $changed,
-        private Row $objective,
+        private readonly Row $objective,
         private ?Row $artificial,
         private int $idTick,
         private bool $shouldClearChanges = false,
@@ -293,7 +294,9 @@ class Solver
 
     private function spawnSymbol(SymbolType $symbolType): Symbol
     {
-        return new Symbol($this->idTick++, $symbolType);
+        $this->idTick += 1;
+
+        return new Symbol($this->idTick, $symbolType);
     }
 
     /**
@@ -310,7 +313,7 @@ class Solver
      *
      * If a subject cannot be found, an invalid symbol will be returned.
      */
-    private static function chooseSubject(Row $row, Tag $tag): Symbol
+    private function chooseSubject(Row $row, Tag $tag): Symbol
     {
         foreach ($row->cells as $symbol) {
             if ($symbol->symbolType === SymbolType::External) {
