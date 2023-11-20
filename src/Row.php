@@ -121,9 +121,9 @@ class Row implements Countable, Stringable
             );
         })();
         $this->constant *= $coefficient;
-        foreach ($this->cells as $symbol) {
-            $c = $this->cells->offsetGet($symbol);
-            $this->cells->offsetSet($symbol, $c *= $coefficient);
+        foreach ($this->cells as $cellSymbol) {
+            $c = $this->cells->offsetGet($cellSymbol);
+            $this->cells->offsetSet($cellSymbol, $c * $coefficient);
         }
     }
 
