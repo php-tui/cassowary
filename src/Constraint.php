@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary;
 
 use Stringable;
@@ -36,6 +38,7 @@ final class Constraint implements Stringable
         } else {
             $expr = $expr->add($rhs->negate());
         }
+
         return new self($operator, $expr, $strength);
     }
 

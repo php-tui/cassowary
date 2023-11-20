@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary\Tests\Unit;
 
 use PhpTui\Cassowary\Constraint;
@@ -60,7 +62,6 @@ class QuadrilateralTest extends TestCase
             Constraint::lessThanOrEqualTo($points[3]->y->add(20.0), $points[1]->y, Strength::STRONG),
             Constraint::lessThanOrEqualTo($points[3]->y->add(20.0), $points[2]->y, Strength::STRONG),
         ]);
-
 
         foreach ($points as $point) {
             $solver->addConstraints([

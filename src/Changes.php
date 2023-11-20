@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary;
 
 use ArrayIterator;
@@ -55,6 +57,7 @@ class Changes implements IteratorAggregate
                     if (!$found->offsetExists($variable)) {
                         $found[$target] = $value;
                     }
+
                     continue 2;
                 }
             }
@@ -64,9 +67,9 @@ class Changes implements IteratorAggregate
             if (!$found->offsetExists($target)) {
                 return 0.0;
             }
+
             return $found[$target];
         }, $targets);
     }
-
 
 }

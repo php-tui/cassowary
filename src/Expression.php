@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary;
 
 use Stringable;
@@ -35,6 +37,7 @@ final class Expression implements Stringable
         if ($expr instanceof Variable) {
             $terms = $this->terms;
             $terms[] = new Term($expr);
+
             return new Expression($terms, 0.0);
         }
 
@@ -48,6 +51,7 @@ final class Expression implements Stringable
     public function constant(float $constant): self
     {
         $this->constant = $constant;
+
         return $this;
     }
 
@@ -56,7 +60,7 @@ final class Expression implements Stringable
         foreach ($this->terms as $term) {
             $term->coefficient *= -1;
         }
-        $this->constant *= - 1;
+        $this->constant *= -1;
 
         return $this;
     }

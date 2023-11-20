@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary\Tests\Benchmark;
 
 use PhpBench\Attributes;
 use PhpTui\Cassowary\Constraint;
-use PhpTui\Cassowary\Strength;
 use PhpTui\Cassowary\Solver;
+use PhpTui\Cassowary\Strength;
 use PhpTui\Cassowary\Variable;
 use RuntimeException;
 

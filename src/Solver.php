@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary;
 
 use RuntimeException;
@@ -38,6 +40,7 @@ class Solver
         foreach ($this->constraints as $constraint) {
             $string[] = $constraint->__toString();
         }
+
         return implode("\n", $string);
     }
 
@@ -92,6 +95,7 @@ class Solver
                 }
             }
         }
+
         return new Changes($this->publicChanges);
     }
 
@@ -210,6 +214,7 @@ class Solver
                         $error = $this->spawnSymbol(SymbolType::Error);
                         $row->insertSymbol($error, -$coefficient);
                         $this->objective->insertSymbol($error, $constraint->strength);
+
                         return new Tag(
                             $slack,
                             $error
@@ -229,6 +234,7 @@ class Solver
 
                         $this->objective->insertSymbol($errplus, $constraint->strength);
                         $this->objective->insertSymbol($errminus, $constraint->strength);
+
                         return new Tag(
                             $errplus,
                             $errminus
@@ -237,6 +243,7 @@ class Solver
 
                     $dummy = $this->spawnSymbol(SymbolType::Dummy);
                     $row->insertSymbol($dummy, 1.0);
+
                     return new Tag(
                         $dummy,
                         Symbol::invalid()
@@ -245,7 +252,6 @@ class Solver
                     throw new RuntimeException(sprintf('Cannot handle operator: %s', $constraint->relationalOperator->name));
             };
         })();
-
 
         if ($row->constant < 0.0) {
             $row->reverseSign();
@@ -269,6 +275,7 @@ class Solver
                 // TODO: use object here
                 $data = [NAN, $symbol, 0];
                 $this->varData->offsetSet($variable, $data);
+
                 return $data;
             }
 
@@ -456,6 +463,7 @@ class Solver
         }
 
         $this->rows->offsetUnset($found);
+
         return [$found, $foundRow];
     }
 
