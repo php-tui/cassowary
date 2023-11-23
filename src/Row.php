@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary;
 
 use Countable;
@@ -57,6 +59,7 @@ class Row implements Countable, Stringable
             if (SolverUtil::nearZero($newCoefficient)) {
                 $this->cells->offsetUnset($symbol);
             }
+
             return;
         } // else Vacant
 
@@ -79,9 +82,10 @@ class Row implements Countable, Stringable
 
     public function coefficientFor(Symbol $symbol): float
     {
-        if (false ===$this->cells->offsetExists($symbol)) {
+        if (false === $this->cells->offsetExists($symbol)) {
             return 0.0;
         }
+
         return $this->cells->offsetGet($symbol);
     }
 
@@ -92,6 +96,7 @@ class Row implements Countable, Stringable
                 return false;
             }
         }
+
         return true;
     }
 
@@ -107,18 +112,18 @@ class Row implements Countable, Stringable
             if ($this->cells->offsetExists($symbol)) {
                 $coeefficient = $this->cells->offsetGet($symbol);
                 $this->cells->offsetUnset($symbol);
+
                 return $coeefficient;
             }
 
             throw new RuntimeException(
-                'Coefficient for symbol doesn\'t exist,' .
-                'this probably should not happen'
+                'Coefficient for symbol doesn\'t exist,this probably should not happen'
             );
         })();
         $this->constant *= $coefficient;
-        foreach ($this->cells as $symbol) {
-            $c = $this->cells->offsetGet($symbol);
-            $this->cells->offsetSet($symbol, $c *= $coefficient);
+        foreach ($this->cells as $cellSymbol) {
+            $c = $this->cells->offsetGet($cellSymbol);
+            $this->cells->offsetSet($cellSymbol, $c * $coefficient);
         }
     }
 
@@ -129,6 +134,7 @@ class Row implements Countable, Stringable
         }
         $coefficient = $this->cells->offsetGet($symbol);
         $this->cells->offsetUnset($symbol);
+
         return $this->insertRow($row, $coefficient);
     }
 
@@ -157,6 +163,7 @@ class Row implements Countable, Stringable
                 return $symbol;
             }
         }
+
         return Symbol::invalid();
     }
 

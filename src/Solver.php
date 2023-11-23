@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary;
 
 use RuntimeException;
 use SplObjectStorage;
+use Stringable;
 
-class Solver
+class Solver implements Stringable
 {
     /**
      * @param SplObjectStorage<Constraint,Tag> $constraints
@@ -19,10 +22,10 @@ class Solver
     final private function __construct(
         public readonly SplObjectStorage $constraints,
         private SplObjectStorage $varForSymbol,
-        private SplObjectStorage $varData,
-        private SplObjectStorage $rows,
+        private readonly SplObjectStorage $varData,
+        private readonly SplObjectStorage $rows,
         private SplObjectStorage $changed,
-        private Row $objective,
+        private readonly Row $objective,
         private ?Row $artificial,
         private int $idTick,
         private bool $shouldClearChanges = false,
@@ -38,6 +41,7 @@ class Solver
         foreach ($this->constraints as $constraint) {
             $string[] = $constraint->__toString();
         }
+
         return implode("\n", $string);
     }
 
@@ -92,6 +96,7 @@ class Solver
                 }
             }
         }
+
         return new Changes($this->publicChanges);
     }
 
@@ -210,6 +215,7 @@ class Solver
                         $error = $this->spawnSymbol(SymbolType::Error);
                         $row->insertSymbol($error, -$coefficient);
                         $this->objective->insertSymbol($error, $constraint->strength);
+
                         return new Tag(
                             $slack,
                             $error
@@ -229,6 +235,7 @@ class Solver
 
                         $this->objective->insertSymbol($errplus, $constraint->strength);
                         $this->objective->insertSymbol($errminus, $constraint->strength);
+
                         return new Tag(
                             $errplus,
                             $errminus
@@ -237,6 +244,7 @@ class Solver
 
                     $dummy = $this->spawnSymbol(SymbolType::Dummy);
                     $row->insertSymbol($dummy, 1.0);
+
                     return new Tag(
                         $dummy,
                         Symbol::invalid()
@@ -245,7 +253,6 @@ class Solver
                     throw new RuntimeException(sprintf('Cannot handle operator: %s', $constraint->relationalOperator->name));
             };
         })();
-
 
         if ($row->constant < 0.0) {
             $row->reverseSign();
@@ -269,6 +276,7 @@ class Solver
                 // TODO: use object here
                 $data = [NAN, $symbol, 0];
                 $this->varData->offsetSet($variable, $data);
+
                 return $data;
             }
 
@@ -286,7 +294,9 @@ class Solver
 
     private function spawnSymbol(SymbolType $symbolType): Symbol
     {
-        return new Symbol($this->idTick++, $symbolType);
+        $this->idTick += 1;
+
+        return new Symbol($this->idTick, $symbolType);
     }
 
     /**
@@ -303,7 +313,7 @@ class Solver
      *
      * If a subject cannot be found, an invalid symbol will be returned.
      */
-    private static function chooseSubject(Row $row, Tag $tag): Symbol
+    private function chooseSubject(Row $row, Tag $tag): Symbol
     {
         foreach ($row->cells as $symbol) {
             if ($symbol->symbolType === SymbolType::External) {
@@ -456,6 +466,7 @@ class Solver
         }
 
         $this->rows->offsetUnset($found);
+
         return [$found, $foundRow];
     }
 

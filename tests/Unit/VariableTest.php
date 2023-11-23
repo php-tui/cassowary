@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PhpTui\Cassowary\Tests\Unit;
 
 use PhpTui\Cassowary\Expression;
@@ -9,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class VariableTest extends TestCase
 {
-    public function testSub():void
+    public function testSub(): void
     {
         $var1 = Variable::new();
         $var2 = Variable::new();
